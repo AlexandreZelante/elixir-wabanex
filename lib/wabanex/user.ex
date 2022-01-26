@@ -1,10 +1,13 @@
 defmodule Wabanex.User do
-  use Ecto.Schema # "use" import macros
-  import Ecto.Changeset # import functions
+  # "use" import macros
+  use Ecto.Schema
+  # import functions
+  import Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  @fields [:email, :password, :name] # Module variable
+  # Module variable
+  @fields [:email, :password, :name]
 
   # struct
   schema "users" do
@@ -15,9 +18,9 @@ defmodule Wabanex.User do
     timestamps()
   end
 
-
   def changeset(params) do
-    %__MODULE__{} # Same as %Wabanex.User{} (the module)
+    # Same as %Wabanex.User{} (the module)
+    %__MODULE__{}
     |> cast(params, @fields)
     |> validate_required(@fields)
     |> validate_length(:password, min: 6)

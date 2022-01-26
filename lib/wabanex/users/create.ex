@@ -1,5 +1,6 @@
 defmodule Wabanex.Users.Create do
-  alias Wabanex.{Repo, User} # Same as 2 lines with alias Wabanex.Repo and Wabanex.User
+  # Same as 2 lines with alias Wabanex.Repo and Wabanex.User
+  alias Wabanex.{Repo, User}
 
   def call(params) do
     params

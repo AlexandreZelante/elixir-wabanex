@@ -21,7 +21,6 @@ defmodule Wabanex.IMC do
       |> Enum.map(fn line -> parse_line(line) end)
       |> Enum.into(%{})
 
-
     {:ok, data}
   end
 

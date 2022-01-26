@@ -1,6 +1,7 @@
 defmodule Wabanex.Users.Get do
   alias Ecto.UUID
-  alias Wabanex.{Repo, User} # Same as 2 lines with alias Wabanex.Repo and Wabanex.User
+  # Same as 2 lines with alias Wabanex.Repo and Wabanex.User
+  alias Wabanex.{Repo, User}
 
   def call(id) do
     id
