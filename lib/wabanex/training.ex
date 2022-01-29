@@ -1,23 +1,24 @@
-defmodule Wabanex.User do
+defmodule Wabanex.Training do
   # "use" import macros
   use Ecto.Schema
   # import functions
   import Ecto.Changeset
 
-  alias Wabanex.Training
+  alias Wabanex.{User, Exercise}
 
   @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
 
   # Module variable - It is used in line cast(params, @fields)
-  @fields [:email, :password, :name]
+  @fields [:start_date, :end_date, :user_id]
 
   # struct
-  schema "users" do
-    field :email, :string
-    field :name, :string
-    field :password, :string
+  schema "trainings" do
+    field :start_date, :date
+    field :end_date, :date
 
-    has_one :training, Training
+    belongs_to :user, User
+    has_many :exercises, Exercise
 
     timestamps()
   end
@@ -27,9 +28,7 @@ defmodule Wabanex.User do
     %__MODULE__{}
     |> cast(params, @fields)
     |> validate_required(@fields)
-    |> validate_length(:password, min: 6)
-    |> validate_length(:name, min: 2)
-    |> validate_format(:email, ~r/@/)
-    |> unique_constraint([:email])
+    |> unique_constraint([:user_id])
+    |> cast_assoc(:exercises)
   end
 end
